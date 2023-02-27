@@ -22,42 +22,54 @@ public class Main {
             switch (input) {
                 case 1 -> {
                     System.out.println("Какую покупку хотите добавить?");
-                    Scanner scanner1 = new Scanner(System.in);
-                    products.add(scanner1.nextLine());
+                    addProduct();
                     System.out.println("Итого в списке покупок " + products.size());
                 }
                 case 2 -> showProducts();
                 case 3 -> {
                     showProducts();
                     System.out.println("Какую покупку хотите удалить? Введите номер или название");
-                    Scanner scanner2 = new Scanner(System.in);
-                    String input1 = scanner2.nextLine();
-                    try {
-                        int input2 = Integer.parseInt(input1);
-                        System.out.println("Покупка " + products.get(input2 - 1) + " удалена, список покупок:");
-                        products.remove(input2 - 1);
-
-                    } catch (RuntimeException e) {
-                        products.remove(input1);
-                        System.out.println("Покупка " + input1 + " удалена, список покупок:");
-                    } finally {
-                        showProducts();
-                    }
+                    deleteProduct();
                 }
                 case 4 -> {
                     System.out.println("Введите текст для поиска:");
-                    Scanner scanner3 = new Scanner(System.in);
-                    String input3 = scanner3.nextLine();
-                    String queryLower = input3.toLowerCase();
-                    System.out.println("Найдено:");
-                    for (int i = 0; i < products.size(); i++) {
-                        String itemLower = products.get(i).toLowerCase();
-                        if (itemLower.contains(queryLower)) {
-                            System.out.println(i + 1 + ". " + products.get(i));
-                        }
-                    }
+                    searchProduct();
                 }
             }
         }
+    }
+
+    private static void searchProduct() {
+        Scanner scanner3 = new Scanner(System.in);
+        String input3 = scanner3.nextLine();
+        String queryLower = input3.toLowerCase();
+        System.out.println("Найдено:");
+        for (int i = 0; i < products.size(); i++) {
+            String itemLower = products.get(i).toLowerCase();
+            if (itemLower.contains(queryLower)) {
+                System.out.println(i + 1 + ". " + products.get(i));
+            }
+        }
+    }
+
+    private static void deleteProduct() {
+        Scanner scanner2 = new Scanner(System.in);
+        String input1 = scanner2.nextLine();
+        try {
+            int input2 = Integer.parseInt(input1);
+            System.out.println("Покупка " + products.get(input2 - 1) + " удалена, список покупок:");
+            products.remove(input2 - 1);
+
+        } catch (RuntimeException e) {
+            products.remove(input1);
+            System.out.println("Покупка " + input1 + " удалена, список покупок:");
+        } finally {
+            showProducts();
+        }
+    }
+
+    private static void addProduct() {
+        Scanner scanner1 = new Scanner(System.in);
+        products.add(scanner1.nextLine());
     }
 }
