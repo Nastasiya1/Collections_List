@@ -40,9 +40,9 @@ public class Main {
     }
 
     private static void searchProduct() {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        String queryLower = input.toLowerCase();
+        Scanner scanner3 = new Scanner(System.in);
+        String input3 = scanner3.nextLine();
+        String queryLower = input3.toLowerCase();
         System.out.println("Найдено:");
         for (int i = 0; i < products.size(); i++) {
             String itemLower = products.get(i).toLowerCase();
@@ -53,16 +53,16 @@ public class Main {
     }
 
     private static void deleteProduct() {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
+        Scanner scanner2 = new Scanner(System.in);
+        String input1 = scanner2.nextLine();
         try {
-            int input2 = Integer.parseInt(input);
+            int input2 = Integer.parseInt(input1);
             System.out.println("Покупка " + products.get(input2 - 1) + " удалена, список покупок:");
             products.remove(input2 - 1);
 
         } catch (RuntimeException e) {
-            products.remove(input);
-            System.out.println("Покупка " + input + " удалена, список покупок:");
+            products.remove(input1);
+            System.out.println("Покупка " + input1 + " удалена, список покупок:");
         } finally {
             showProducts();
         }
